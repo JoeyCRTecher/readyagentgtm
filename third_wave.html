@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadyAgent: The AI Agent Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #26d07c, #3fe08c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flow-arrow {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background-color: #3fe08c;
+            margin: 2rem 0;
+        }
+        .flow-arrow::after {
+            content: '►';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #26d07c;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-[#26d07c]">ReadyAgent</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#vision" class="text-gray-300 hover:text-[#26d07c]">Vision</a>
+                <a href="#benefits" class="text-gray-300 hover:text-[#26d07c]">Benefits</a>
+                <a href="#platform" class="text-gray-300 hover:text-[#26d07c]">Platform</a>
+                <a href="#marketing" class="text-gray-300 hover:text-[#26d07c]">Strategy</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="vision" class="text-center py-16">
+            <h2 class="text-5xl md:text-6xl font-black mb-4">
+                The <span class="gradient-text">Third Wave</span> of AI is Here
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
+                ReadyAgent moves beyond simple copilots to autonomous, intelligent agents that actively drive success.
+            </p>
+            <div class="bg-gray-800 rounded-lg shadow-xl p-8 inline-block">
+                <p class="text-2xl font-bold text-[#26d07c]">🤝 Our Core Vision:</p>
+                <p class="text-2xl text-gray-200">Humans with Agents Drive Customer Success Together.</p>
+            </div>
+        </section>
+
+        <section id="benefits" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-100">Unlock Tangible Business Value</h3>
+                <p class="text-lg text-gray-400 mt-2">ReadyAgent delivers measurable ROI across every department.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4">📈</div>
+                    <h4 class="text-xl font-bold mb-2 text-[#26d07c]">Sales</h4>
+                    <p class="text-gray-300">Boost pipeline, increase win rates, automate outreach, and enhance sales coaching.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4">📣</div>
+                    <h4 class="text-xl font-bold mb-2 text-[#26d07c]">Marketing</h4>
+                    <p class="text-gray-300">Automate conversations, generate campaigns, and improve audience segmentation.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4">💬</div>
+                    <h4 class="text-xl font-bold mb-2 text-[#26d07c]">Customer Service</h4>
+                    <p class="text-gray-300">Provide 24/7 support, reduce response times, and resolve cases efficiently.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4">👥</div>
+                    <h4 class="text-xl font-bold mb-2 text-[#26d07c]">Employee Support</h4>
+                    <p class="text-gray-300">Increase internal productivity and provide faster resolution for employee queries.</p>
+                </div>
+            </div>
+            <div class="mt-12 bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+                <h4 class="text-2xl font-bold text-center mb-6 text-gray-100">Projected Impact on Key Business Metrics</h4>
+                <div class="chart-container h-96">
+                    <canvas id="roiChart"></canvas>
+                </div>
+                <p class="text-center text-gray-400 mt-4">This chart illustrates the projected percentage improvements in key performance indicators after implementing ReadyAgent, based on initial customer data and pilot programs. It highlights significant gains in efficiency and customer satisfaction.</p>
+            </div>
+        </section>
+
+        <section id="platform" class="py-16 bg-gray-950 -mx-4 md:-mx-8 px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-100">A Complete, Extensible & Open Platform</h3>
+                <p class="text-lg text-gray-400 mt-2">ReadyAgent is built on a foundation of trust, security, and flexibility.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+                    <h4 class="text-2xl font-bold text-center mb-6 text-gray-100">Core Platform Pillars</h4>
+                    <div class="chart-container h-96">
+                        <canvas id="platformPillarsChart"></canvas>
+                    </div>
+                     <p class="text-center text-gray-400 mt-4">The platform is built on three core pillars. This visualization shows the relative importance and investment in each area, demonstrating a balanced focus on power, usability, and safety.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+                    <h4 class="text-2xl font-bold text-center mb-6 text-gray-100">How ReadyAgent Works</h4>
+                    <p class="text-center text-gray-400 mb-6">From user intent to task completion, ReadyAgent follows a logical, autonomous flow.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-700 rounded-lg border-l-4 border-[#26d07c]">
+                            <h5 class="font-bold text-[#26d07c]">1. Understands Intent</h5>
+                            <p class="text-gray-300">Analyzes user requests to determine the core goal.</p>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="p-4 bg-gray-700 rounded-lg border-l-4 border-[#1e9f5e]">
+                            <h5 class="font-bold text-[#1e9f5e]">2. Decides on Actions</h5>
+                            <p class="text-gray-300">Identifies the necessary data and tools required to fulfill the request.</p>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="p-4 bg-gray-700 rounded-lg border-l-4 border-[#3fe08c]">
+                            <h5 class="font-bold text-[#3fe08c]">3. Executes Tasks</h5>
+                            <p class="text-gray-300">Autonomously performs the required steps across integrated systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="marketing" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-100">Our Go-to-Market Strategy</h3>
+                <p class="text-lg text-gray-400 mt-2">Engaging and educating our audience through multiple channels.</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+                 <h4 class="text-2xl font-bold text-center mb-6 text-gray-100">Marketing Channel Mix</h4>
+                <div class="chart-container h-96">
+                    <canvas id="marketingStrategyChart"></canvas>
+                </div>
+                <p class="text-center text-gray-400 mt-4">This chart breaks down our strategic focus across different marketing channels. It shows a strong emphasis on direct engagement through events and building trust via educational content and customer stories.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-950 text-white text-center p-6">
+        <p>&copy; 2025 ReadyTech. All Rights Reserved.</p>
+        <p class="text-sm text-gray-500 mt-2">ReadyAgent | The Future of Digital Labor</p>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 16;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            });
+        };
+
+        const roiChartCtx = document.getElementById('roiChart').getContext('2d');
+        new Chart(roiChartCtx, {
+            type: 'bar',
+            data: {
+                labels: processLabels(['Sales Pipeline Growth', 'Marketing Campaign ROI', 'Customer Service Efficiency', 'Employee Productivity']),
+                datasets: [{
+                    label: 'Projected Improvement (%)',
+                    data: [35, 25, 45, 30],
+                    backgroundColor: ['#26d07c', '#1e9f5e', '#3fe08c', '#4a4a4a'],
+                    borderColor: ['#26d07c', '#1e9f5e', '#3fe08c', '#4a4a4a'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#2a2a2a'
+                        },
+                        ticks: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#e0e0e0'
+                        }
+                    }
+                }
+            }
+        });
+
+        const platformPillarsCtx = document.getElementById('platformPillarsChart').getContext('2d');
+        new Chart(platformPillarsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Transformative AI', 'Trusted & Secure', 'Easy to Customize'],
+                datasets: [{
+                    label: 'Platform Focus',
+                    data: [40, 35, 25],
+                    backgroundColor: ['#26d07c', '#1e9f5e', '#3fe08c'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const marketingStrategyCtx = document.getElementById('marketingStrategyChart').getContext('2d');
+        new Chart(marketingStrategyCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Events & Webinars', 'Customer Success Stories', 'Educational Content', 'Value-Based Pricing Comms'],
+                datasets: [{
+                    label: 'Strategy Focus',
+                    data: [35, 25, 30, 10],
+                    backgroundColor: ['#26d07c', '#1e9f5e', '#3fe08c', '#4a4a4a'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
